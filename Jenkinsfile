@@ -5,7 +5,7 @@ pipeline {
             steps {
                    git branch: 'master',
                     url: 'https://github.com/vigneshkumarlakshmanan/python_project.git',
-                    credentialsId: 'github-cred'
+                    credentialsId: '1002'
             }
         }
            stage('Build Docker Image') {

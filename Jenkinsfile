@@ -22,9 +22,12 @@ pipeline {
         }
 
         stage('Run Container') {
+
+            agent { label 'docker-agent' }
+
             steps {
                 echo 'Running container...'
-                bat "docker run -d -p 5000:5000 flask-login-app:%BUILD_NUMBER%"
+                sh "docker run -d -p 5000:5000 flask-login-app:latest"
             }
         }
     }

@@ -12,11 +12,3 @@ pipeline {
         }
     }
 }
-    post {
-        success {
-            echo 'Build & Test Successful!'
-        }
-        failure {
-            echo 'Build or Test Failed!'
-        }
-    }

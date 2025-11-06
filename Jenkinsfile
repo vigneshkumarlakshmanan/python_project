@@ -1,13 +1,9 @@
 pipeline {
     agent { label 'deployment-server' }
-    environment {
-        GIT_REPO = 'https://github.com/vigneshkumarlakshmanan/python_project.git'
-    }
     stages {
-        stage('Checkout Code') {
+        stage('Clone Repository') {
             steps {
-                git branch: 'master',
-                    url: "${GIT_REPO}"
+                git branch: 'master', url: ''
             }
         }
            stage('Build Docker Image') {

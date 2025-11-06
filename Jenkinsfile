@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'deployment-server' }
+    agent any
     stages {
         stage('Clone Repository') {
             steps {

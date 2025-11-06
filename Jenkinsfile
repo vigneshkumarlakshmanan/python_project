@@ -7,17 +7,19 @@ pipeline {
                     url: 'https://github.com/vigneshkumarlakshmanan/python_project.git'
             }
         }
-           stage('Build Docker Image') {
-            steps {
-                echo 'Building Docker image...'
-                sh 'docker build -t flask-login-app:$BUILDNUMBER .'
+stage('Build Docker Image') {
+    steps {
+        echo ' Building Docker image...'
+        sh '''
+            docker build -t flask-login-app:${BUILD_NUMBER} .
+        '''
+    }
+}
 
-            }
-        }
         stage('Run Container') {
             steps {
                 echo 'Running container...'
-                sh "docker run -d -p 5000:5000 flask-login-app:latest"
+                sh "docker run -d -p 5000:5000 flask-login-app:${BUILD_NUMBER}"
             }
     }
 }

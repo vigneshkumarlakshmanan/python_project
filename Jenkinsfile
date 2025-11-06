@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'master', url: 'https://github.com/vigneshkumarlakshmanan/python_project.git'
+                   git branch: 'master',
+                    url: 'https://github.com/vigneshkumarlakshmanan/python_project.git',
+                    credentialsId: 'github-cred'
             }
         }
            stage('Build Docker Image') {

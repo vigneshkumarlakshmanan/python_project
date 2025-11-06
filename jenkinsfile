@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_REPO = 'https://github.com/vigneshkumarlakshmanan/python_project.git'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'master',
+                    url: "${GIT_REPO}"
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker image...'
+                bat 'docker build -t flask-login-app:%BUILD_NUMBER% .'
+
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                echo 'Running container...'
+                bat "docker run -d -p 5000:5000 flask-login-app:%BUILD_NUMBER%"
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build & Test Successful!'
+        }
+        failure {
+            echo 'Build or Test Failed!'
+        }
+    }
+}
